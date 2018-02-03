@@ -7,23 +7,23 @@ const TextInput = ({
   placeholder,
   meta: { touched, error, warning }
 }) => (
-    <span>
+    <div>
       <label>
         {label}
       </label>
-      <span>
+      <div>
         <input {...input} placeholder={placeholder} type={type} />
         {touched &&
           ((error &&
-            <span>
+            <p>
               {error}
-            </span>) ||
+            </p>) ||
             (warning &&
-              <span>
+              <p>
                 {warning}
-              </span>))}
-      </span>
-    </span>
+              </p>))}
+      </div>
+    </div>
   )
 
 export default TextInput;

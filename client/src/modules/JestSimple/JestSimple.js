@@ -28,7 +28,7 @@ class JestSimple extends Component {
       <Container>
         <Row>
           <Col xs={{ size: 10, offset: 1 }}>
-            <h1>Jest & Enzyme</h1>
+            <h1>hello admin!!!!</h1>
             <hr/>
             <p>Snapshot test example</p>
             <Link>Home</Link>

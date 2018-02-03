@@ -1,4 +1,3 @@
-import checkAccessContron from '../controllers/api/checkAccessContron';
 import { parse } from 'url';
 
 export default function accessControlAllow(req, res, next) {
@@ -6,16 +5,8 @@ export default function accessControlAllow(req, res, next) {
   if(!url) {
     return next();
   }
-  const { hostname } = parse(url);
-  checkAccessContron(hostname, (err, admin) => {
-    if(err) {
-      return next(err);
-    }
-    if(admin) {
-      res.header('Access-Control-Allow-Origin', url);
-      res.header('Access-Control-Allow-Credentials', 'true');
-      res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    }
-    next();
-  });
+  res.header('Access-Control-Allow-Origin', url);
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  return next();
 };

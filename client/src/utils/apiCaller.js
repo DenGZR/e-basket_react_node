@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
 
-export const API_URL = 'https://jsonplaceholder.typicode.com';
+export const API_URL = 'http://localhost:8080/api';
 
 export default function callApi(endpoint, method = 'get', body, options = { isJSON: true }) {
 
@@ -8,6 +8,8 @@ export default function callApi(endpoint, method = 'get', body, options = { isJS
 
   if (options.isJSON) {
     headers['content-type'] = 'application/json';
+  } else {
+    headers['content-type'] = 'content-type:text/plain;charset=UTF-8';
   }
 
   return fetch(`${API_URL}/${endpoint}`, {
