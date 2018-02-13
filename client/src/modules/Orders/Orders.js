@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 // import { Redirect } from 'react-router-dom';
 import { Row, Col } from 'reactstrap';
 import OrderList from './components/OrderList';
@@ -12,7 +13,9 @@ class Orders extends Component {
     }
 
     addToBasket = (itemId) => (ev) => {
-        console.log(itemId);
+        const { orderList } = this.props;
+        const targetItem = _.find(orderList, { 'id': itemId})
+        console.log(targetItem);
     }
 
     render() {
