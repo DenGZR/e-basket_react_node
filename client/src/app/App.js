@@ -7,7 +7,7 @@ import {
 import Auth from '../utils/Auth';
 
 import Header from './../components/Header/Header';
-import BasketIcon from './../components/Basket/Basket';
+import UserBasketLink from './../components/UserBasketLink/UserBasketLink';
 import Orders from './../modules/Orders/Orders';
 import Login from './../modules/Login/Login';
 import JestSimple from './../modules/JestSimple/JestSimple';
@@ -32,7 +32,7 @@ class App extends Component {
         <Router>
           <div className="App">
             <Header />
-            <BasketIcon />
+            <UserBasketLink />
             <Route exact path="/orders" component={Orders}/>
             <Route path="/login" component={Login}/>
             <PrivateRoute path="/admin" component={JestSimple}/>

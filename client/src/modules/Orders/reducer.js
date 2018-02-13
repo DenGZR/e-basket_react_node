@@ -1,31 +1,39 @@
-import { GET_ORDERS_START, GET_ORDERS_SUCCESS, GET_ORDERS_FAIL } from './actions';
+import * as ordersAction from './actions';
 
 const initialState = {
     isLoading: false,
     data: [],
+    selectedId: []
 };
 
 const OrdersReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_ORDERS_START: {
+    case ordersAction.GET_ORDERS_START: {
         return {
             ...state,
             isLoading: true,
         }
       }
 
-    case GET_ORDERS_SUCCESS: {
+    case ordersAction.GET_ORDERS_SUCCESS: {
       return {
           ...state,
           isLoading: false,
-          data: action.payload.data
+          data: action.response.data
       }
     }
 
-    case GET_ORDERS_FAIL: {
+    case ordersAction.GET_ORDERS_FAIL: {
       return {
           ...state,
           isLoading: false,
+      }
+    }
+          
+    case ordersAction.ADD_ORDER_TO_BASKET: {
+      return {
+          ...state,
+          selectedId: [...state.selectedId, action.id],
       }
     }
 

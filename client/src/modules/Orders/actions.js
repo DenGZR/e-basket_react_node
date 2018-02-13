@@ -2,18 +2,21 @@ export const GET_ORDERS_START = 'ORDERS/GET_ORDERS_START';
 export const GET_ORDERS_SUCCESS = 'ORDERS/GET_ORDERS_SUCCESS';
 export const GET_ORDERS_FAIL = 'ORDERS/GET_ORDERS_FAIL';
 
+export const ADD_ORDER_TO_BASKET = 'ADD_ORDER_TO_BASKET';
+export const REMOVE_ORDER_FROM_BASKET = 'REMOVE_ORDER_FROM_BASKET';
+
 const getOrdersStart = () => ({
   type: GET_ORDERS_START,
 });
 
-const getOrdersSuccess = (payload) => ({
+const getOrdersSuccess = (response) => ({
   type: GET_ORDERS_SUCCESS,
-  payload: payload.response,
+  response,
 });
 
-const getOrdersFail = (payload) => ({
+const getOrdersFail = (response) => ({
   type: GET_ORDERS_FAIL,
-  payload: payload.response,
+  response,
 });
 
 export const fetchOrders = (id) => {
@@ -23,7 +26,7 @@ export const fetchOrders = (id) => {
     return api('orders','get', id)
       .then(response => {
         console.log(response);
-        dispatch(getOrdersSuccess({ response }))
+        dispatch(getOrdersSuccess(response))
       })
       .catch((err) => {
         console.log('req user error!!!', err);
@@ -32,4 +35,13 @@ export const fetchOrders = (id) => {
   };
 };
 
+export const addOrderToBasket = (id) => ({
+  type: ADD_ORDER_TO_BASKET,
+  id,
+});
+
+export const removeOrderFromBasket = (id) => ({
+  type: REMOVE_ORDER_FROM_BASKET,
+  id,
+});
 

@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import _ from 'lodash';
-// import { Redirect } from 'react-router-dom';
 import { Row, Col } from 'reactstrap';
 import OrderList from './components/OrderList';
-import { fetchOrders } from './actions';
+import { fetchOrders, addOrderToBasket } from './actions';
 
 class Orders extends Component {
 
@@ -12,10 +10,9 @@ class Orders extends Component {
         this.props.fetchOrders();
     }
 
-    addToBasket = (itemId) => (ev) => {
-        const { orderList } = this.props;
-        const targetItem = _.find(orderList, { 'id': itemId})
-        console.log(targetItem);
+    addToBasket = (orderId) => (ev) => {
+        this.props.addOrderToBasket(orderId);
+        console.log(orderId);
     }
 
     render() {
@@ -34,12 +31,6 @@ class Orders extends Component {
         );
     };
 
-    processForm = () => (ev) => {
-        ev.preventDefault();
-        const { values } = this.props.loginForm;
-        this.props.fetchUserAuth(values);
-    };
-
 };
 const mapStateToProps = (state) => ({
     isLoading: state.orders.isLoading,
@@ -48,6 +39,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     fetchOrders: (id) => fetchOrders(id),
+    addOrderToBasket: (id) => addOrderToBasket(id),
 
 };
 
