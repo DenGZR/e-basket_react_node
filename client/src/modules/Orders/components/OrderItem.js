@@ -26,6 +26,12 @@ class BasketOrderItem extends Component {
         })
     }
 
+    addItemToBasket = () => {
+        const { item, addToBasket } = this.props;
+        const { quantity } = this.state;
+        addToBasket(item.id, quantity);
+    }
+
     render() {
         const { item, addToBasket } = this.props;
         const { title, imgSrc, description, id } = item;
@@ -39,7 +45,7 @@ class BasketOrderItem extends Component {
                 <button onClick={this.onDecrease}>-</button>
                 <input type="text" value={quantity} onChange={this.setQuantity()} />
                 <button onClick={this.onIncrease}>+</button>
-                <button onClick={addToBasket(id)}>Добавить в корзину</button>
+                <button onClick={this.addItemToBasket()}>Добавить в корзину</button>
             </div>
         )
     }
