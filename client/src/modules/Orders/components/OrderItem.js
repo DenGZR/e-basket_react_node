@@ -1,16 +1,50 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const orderItem = ({ item, addToBasket }) => {
-    const { title, imgSrc, description, id } = item;
-    debugger;
-    return (
-        <div className="list-item" >
-            <h2>{title}</h2>
-            <img src={imgSrc} alt="foto"/>
-            <p>{description}</p>
-            <button onClick={addToBasket(id)}>Добавить в корзину</button>
-        </div>
-    )
-};
+class BasketOrderItem extends Component {
+    state = {
+        quantity: 1,
+    }
 
-export default orderItem;
+    onDecrease = () => {
+        const { quantity } = this.state;
+        this.setState({
+            quantity: quantity - 1 < 0 ? 0 : quantity - 1
+        });
+    }
+
+    onIncrease = () => {
+        const { quantity } = this.state;
+        this.setState({
+            quantity: quantity + 1
+        })
+    }
+
+    setQuantity = () => (ev) => {
+        const quantity = ev.target.value;
+        this.setState({
+            quantity: quantity
+        })
+    }
+
+    render() {
+        const { item, addToBasket } = this.props;
+        const { title, imgSrc, description, id } = item;
+        const { quantity } = this.state;
+
+        return (
+            <div className="list-item" >
+                <h2>{title}</h2>
+                <img src={imgSrc} alt="foto"/>
+                <p>{description}</p>
+                <button onClick={this.onDecrease}>-</button>
+                <input type="text" value={quantity} onChange={this.setQuantity()} />
+                <button onClick={this.onIncrease}>+</button>
+                <button onClick={addToBasket(id)}>Добавить в корзину</button>
+            </div>
+        )
+    }
+
+
+}
+
+export default BasketOrderItem;
