@@ -4,7 +4,7 @@ import {
   Route, 
   Redirect
 } from 'react-router-dom';
-import Auth from '../utils/Auth';
+import Auth from '../utils/auth';
 
 import Header from './../components/Header/Header';
 import UserBasketLink from './../components/UserBasketLink/UserBasketLink';

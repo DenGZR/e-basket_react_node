@@ -1,12 +1,27 @@
+import _ from 'lodash';
 import * as ordersAction from './actions';
 
+
 const initialState = {
-    isLoading: false,
-    data: [],
     selectedId: []
 };
 
-const OrdersReducer = (state = initialState, action) => {
+const updateBasketOrders = (state, action ) => {
+    const { selectedId } = state;
+    const newItem = {
+        id: action.id,
+        quantity: action.quantity,
+    };
+
+    let updatedItem = _.find(selectedId, { 'id': newItem.id });
+    if(updatedItem) {
+        updatedItem.quantity = newItem.quantity;
+        return [ ...selectedId ];
+    }
+    return [ ...selectedId, newItem ];
+};
+
+const BasketReducer = (state = initialState, action) => {
   switch (action.type) {
     case ordersAction.GET_ORDERS_START: {
         return {
@@ -31,9 +46,10 @@ const OrdersReducer = (state = initialState, action) => {
     }
           
     case ordersAction.ADD_ORDER_TO_BASKET: {
+        debugger;
       return {
           ...state,
-          selectedId: [...state.selectedId, action.id],
+          selectedId: updateBasketOrders(state, action),
       }
     }
 
@@ -43,4 +59,4 @@ const OrdersReducer = (state = initialState, action) => {
   }
 };
 
-export default OrdersReducer;
+export default BasketReducer;

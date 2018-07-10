@@ -35,13 +35,14 @@ export const fetchOrders = (id) => {
   };
 };
 
-export const addOrderToBasket = (id) => ({
-  type: ADD_ORDER_TO_BASKET,
-  id,
+export const addOrderToBasket = (id, quantity) => ({
+    type: ADD_ORDER_TO_BASKET,
+    id,
+    quantity
 });
 
 export const removeOrderFromBasket = (id) => ({
-  type: REMOVE_ORDER_FROM_BASKET,
-  id,
+    type: REMOVE_ORDER_FROM_BASKET,
+    id,
 });
 

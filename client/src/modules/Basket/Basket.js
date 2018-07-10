@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import _ from 'lodash';
+// import _ from 'lodash';
 import { Row, Col } from 'reactstrap';
-import BasketOrderList from './components/BasketOrderList';
-import { addOrderToBasket } from './actions';
+// import BasketOrderList from './components/BasketOrderList';
+
 
 class Basket extends Component {
 
@@ -12,8 +12,8 @@ class Basket extends Component {
     }
 
     addToBasket = (orderId) => (ev) => {
-        this.props.addOrderToBasket(orderId);
-        console.log(orderId);
+        // this.props.addOrderToBasket(orderId);
+        // console.log(orderId);
     }
 
     render() {
@@ -26,7 +26,6 @@ class Basket extends Component {
             <Row>
                 <Col xs={{ size: 10, offset: 1 }}>
                     <h1>Basket!!!</h1>
-                    <BasketOrderList />
                 </Col>
             </Row>
         );
@@ -50,10 +49,11 @@ const mapStateToProps = (state) => ({
     orderList: orderInBasketSelector(state),
 });
 
-const mapDispatchToProps = {
-    // fetchOrders: (id) => fetchOrders(id),
-    addOrderToBasket: (id) => addOrderToBasket(id),
+// const mapDispatchToProps = {
+//     // fetchOrders: (id) => fetchOrders(id),
+//     // addOrderToBasket: (id) => addOrderToBasket(id),
+//
+// };
 
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Basket);
+// export default connect(mapStateToProps, mapDispatchToProps)(Basket);
+export default connect(mapStateToProps)(Basket);

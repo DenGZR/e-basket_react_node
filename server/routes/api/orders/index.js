@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import getAuth from '../../../controllers/api/getAuth';
+import { getOrders } from '../../../controllers/api/orders';
 
-const loginRouter = Router();
+const ordersRouter = Router();
 
-loginRouter.post('/', getAuth);
+ordersRouter.get('/', getOrders);
 
-export default loginRouter;
+export default ordersRouter;

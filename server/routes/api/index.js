@@ -1,12 +1,7 @@
 import { Router } from 'express';
-import login from './login';
-import orders from './orders';
-import xlsxToJson from './xlsxToJson';
+import catalog from './catalog';
 
 const apiRouter = Router();
-
-apiRouter.use('/xlsx', xlsxToJson);
-apiRouter.use('/login', login);
-apiRouter.use('/orders', orders);
+apiRouter.use('/catalog', catalog);
 
 export default apiRouter;

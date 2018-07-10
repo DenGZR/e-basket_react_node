@@ -1,5 +1,5 @@
 import React from 'react';
-import OrderItem from './OrderItem';
+import BaskeOrderItem from './BaskeOrderItem';
 
 const olderList = ({ items, onItemClick }) => {
     
@@ -8,7 +8,7 @@ const olderList = ({ items, onItemClick }) => {
     return (
         <div className="order-list">
             {
-                items.map(item => <OrderItem item={item} addToBasket={onItemClick} key={item.id} />)
+                items.map(item => <BaskeOrderItem item={item} addToBasket={onItemClick} key={item.id} />)
             }
         </div>
     )

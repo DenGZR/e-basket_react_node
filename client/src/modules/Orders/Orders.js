@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Row, Col } from 'reactstrap';
 import OrderList from './components/OrderList';
-import { fetchOrders, addOrderToBasket } from './actions';
+import { fetchOrders } from './actions';
+import { addOrderToBasket } from '../Basket/actions';
 
 class Orders extends Component {
 
@@ -10,9 +11,10 @@ class Orders extends Component {
         this.props.fetchOrders();
     }
 
-    addToBasket = (orderId) => (ev) => {
-        this.props.addOrderToBasket(orderId);
+    addToBasket = (orderId, quantity) => {
         console.log(orderId);
+        this.props.addOrderToBasket(orderId, quantity);
+
     }
 
     render() {
@@ -39,7 +41,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     fetchOrders: (id) => fetchOrders(id),
-    addOrderToBasket: (id) => addOrderToBasket(id),
+    addOrderToBasket: (id, quantity) => addOrderToBasket(id, quantity),
 
 };
 
