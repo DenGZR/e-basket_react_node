@@ -18,17 +18,10 @@ const getCatalog = (req, res, next) => {
         title: $(item).text()
     })).get();
 
-    const getCategoriesList = $ => $('.categories.list a').map((i, item) => ({
-        url: $(item).attr('href'),
-        title: $(item).find('.title').text()
-    })).get();
-
     getDataFromUrl(baseUrl).then($ => {
-        const subMenu = getSubMenuLinks($);
-        const categoriesList = getCategoriesList($);
+        const menuLinks = getSubMenuLinks($);
         res.status(200).json({
-            subMenu,
-            categoriesList,
+            data: menuLinks
         });
     });   
 };
