@@ -19,15 +19,29 @@ class Catalog extends Component {
 
     render() {
         const { isLoading, data } = this.props;
-        if (isLoading) {
+        if (isLoading || !data) {
             return <span> show spinner!!!</span>
         }
+        // if (!data) return null;
         console.log('data', data);
-
+        const {subMenu, categoriesList} = data;
         return (
             <Row>
                 <Col xs={{ size: 10, offset: 1 }}>
-                    <h1>order test!!!</h1>                    
+                    <h1>sub-menu!!!</h1>   
+                    <ul className="sub-menu">
+                    {
+                      subMenu.map(itemMenu => (
+                          <li>
+                              <a href={itemMenu.url}>
+                                <i className={itemMenu.icon}></i>  
+                                {itemMenu.title}
+                              </a>
+                          </li>
+                      ))  
+                    }    
+                    </ul> 
+                                
                 </Col>
             </Row>
         );

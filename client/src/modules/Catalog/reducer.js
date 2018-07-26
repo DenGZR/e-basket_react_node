@@ -2,7 +2,7 @@ import * as catalogAction from './actions';
 
 const initialState = {
     isLoading: false,
-    data: [],
+    data: null,
     error: null,
 };
 
