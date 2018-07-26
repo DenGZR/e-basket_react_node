@@ -30,6 +30,7 @@
     "babel-register": "^6.22.0",
     "cheerio": "^1.0.0-rc.2",
     "concurrently": "^3.4.0",
+    "cors": "^2.8.4",
     "eslint": "^3.18.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",
@@ -45,10 +46,10 @@
     "webpack": "^2.3.1"
   },
   "scripts": {
-    "serv": "cross-env NODE_ENV=development nodemon ./server/app.js --exec babel-node --presets es2015,stage-2",
-    "client": "http-server ./examples -p 8081",
+    "serv": "nodemon --exec npm run babel-node -- ./server/app.js",
+    "client": "cd client && npm run start",
     "babel-node": "babel-node --presets=latest",
-    "start": "nodemon --exec npm run babel-node -- ./server/app.js",
+    "start": "concurrently \"npm run serv\" \"npm run client\"",
     "reinstall": "rm -rf node_modules && npm cache clean && npm install"
   },
   "repository": {

@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
 import config from './config';
 import routes from './routes';
 
@@ -10,6 +11,11 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+app.use(cors(corsOptions));
 /* Routes */
 app.use('/', routes);
 

@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Row, Col } from 'reactstrap';
 import OrderList from './components/OrderList';
-import { fetchOrders } from './actions';
-import { addOrderToBasket } from '../Basket/actions';
+import { fetchData } from './actions';
 
-class Orders extends Component {
+
+class Catalog extends Component {
 
     componentDidMount() {
         this.props.fetchData();
@@ -18,16 +18,16 @@ class Orders extends Component {
     }
 
     render() {
-        const { isLoading, orderList } = this.props;
+        const { isLoading, data } = this.props;
         if (isLoading) {
             return <span> show spinner!!!</span>
         }
+        console.log('data', data);
 
         return (
             <Row>
                 <Col xs={{ size: 10, offset: 1 }}>
-                    <h1>order test!!!</h1>
-                    <OrderList items={orderList} onItemClick={this.addToBasket}/>
+                    <h1>order test!!!</h1>                    
                 </Col>
             </Row>
         );
@@ -35,14 +35,14 @@ class Orders extends Component {
 
 };
 const mapStateToProps = (state) => ({
-    isLoading: state.orders.isLoading,
-    orderList: state.orders.data,
+    isLoading: state.catalog.isLoading,
+    data: state.catalog.data,
 });
 
 const mapDispatchToProps = {
-    fetchData: (id) => fetchOrders(id),
-    addOrderToBasket: (id, quantity) => addOrderToBasket(id, quantity),
+    fetchData: () => fetchData(),
+    
 
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Orders);
+export default connect(mapStateToProps, mapDispatchToProps)(Catalog);

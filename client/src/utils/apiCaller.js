@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
 
-export const API_URL = 'http://localhost:8080/api';
+export const API_URL = 'http://localhost:9001';
 
 export default function callApi(endpoint, method = 'get', body, options = { isJSON: true }) {
 
@@ -10,8 +10,8 @@ export default function callApi(endpoint, method = 'get', body, options = { isJS
     headers['content-type'] = 'application/json';
   } else {
     headers['content-type'] = 'content-type:text/plain;charset=UTF-8';
-  }
-
+  }  
+console.log('body',body,headers)
   return fetch(`${API_URL}/${endpoint}`, {
     headers,
     method,

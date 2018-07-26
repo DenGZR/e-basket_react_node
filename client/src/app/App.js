@@ -10,6 +10,7 @@ import Header from './../components/Header/Header';
 import UserBasketLink from './../components/UserBasketLink/UserBasketLink';
 import Basket from './../modules/Basket/Basket';
 
+import Catalog from './../modules/Catalog/Catalog';
 import Orders from './../modules/Orders/Orders';
 import Login from './../modules/Login/Login';
 import JestSimple from './../modules/JestSimple/JestSimple';
@@ -35,6 +36,7 @@ class App extends Component {
           <div className="App">
             <Header />
             <UserBasketLink />
+            <Route exact path="/catalog" component={Catalog}/>
             <Route exact path="/orders" component={Orders}/>
             <Route path="/login" component={Login}/>
             <Route path="/basket" component={Basket}/>
