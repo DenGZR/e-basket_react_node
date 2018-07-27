@@ -16,10 +16,10 @@ const getCatalogFail = (response) => ({
   response,
 });
 
-export const fetchData = () => {  
+export const fetchData = (url = '') => {  
   return (dispatch, state, api) => {
     dispatch(getCatalogStart());
-    return api('api/catalog','post', {url: ''}, { isJSON: false })
+    return api('api/catalog','post', {url: url}, { isJSON: false })
       .then(response => {
         console.log(response);
         dispatch(getCatalogSuccess(response))

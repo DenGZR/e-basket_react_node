@@ -5,6 +5,7 @@ import cheerio from 'cheerio';
 const baseUrl = 'https://mebel-ikea.com.ua';
 
 const getCatalog = (req, res, next) => {
+    console.log('req.body', req.body);
     const scrapingUrl = req.body.url || '';
     const isRootPage = !scrapingUrl;
     const result = {};

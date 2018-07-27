@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import  { Link } from 'react-router-dom';
 import { Row, Col } from 'reactstrap';
 import OrderList from './components/OrderList';
 import { fetchData } from './actions';
@@ -8,13 +9,30 @@ import { fetchData } from './actions';
 class Catalog extends Component {
 
     componentDidMount() {
-        this.props.fetchData();
+        const url = this.props.location.pathname;
+        this.props.fetchData(url);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        // will be true
+        const locationChanged = nextProps.location.pathname !== this.props.location.pathname
+        console.log('locationChanged', locationChanged);
+        if (locationChanged) {
+            this.props.fetchData(nextProps.location.pathname);
+        }
+        
     }
 
     addToBasket = (orderId, quantity) => {
         console.log(orderId);
         this.props.addOrderToBasket(orderId, quantity);
 
+    }
+
+    getUserUrl() {
+        const url = this.props.location.pathname;
+
+        
     }
 
     render() {
@@ -24,6 +42,7 @@ class Catalog extends Component {
         }
         // if (!data) return null;
         console.log('data', data);
+        console.log('this.props.location', this.props.location);
         const {subMenu, categoriesList} = data;
         return (
             <Row>
@@ -32,11 +51,11 @@ class Catalog extends Component {
                     <ul className="sub-menu">
                     {
                       subMenu.map(itemMenu => (
-                          <li>
-                              <a href={itemMenu.url}>
+                          <li key={itemMenu.url}>
+                              <Link to={itemMenu.url}>
                                 <i className={itemMenu.icon}></i>  
                                 {itemMenu.title}
-                              </a>
+                              </Link>                             
                           </li>
                       ))  
                     }    
@@ -54,7 +73,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    fetchData: () => fetchData(),
+    fetchData: (url) => fetchData(url),
     
 
 };

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Route, 
-  Redirect
+  Redirect,
+  Switch,
 } from 'react-router-dom';
 import Auth from '../utils/auth';
 
@@ -36,12 +37,13 @@ class App extends Component {
           <div className="App">
             <Header />
             <UserBasketLink />
-            <Route exact path="/catalog" component={Catalog}/>
-            <Route exact path="/orders" component={Orders}/>
-            <Route path="/login" component={Login}/>
-            <Route path="/basket" component={Basket}/>
-            <PrivateRoute path="/admin" component={JestSimple}/>
-
+            <Switch>
+              <Route exact path='/' component={Catalog}/>
+              <Route path='/goods' component={Catalog}/>              
+              <Route path="/login" component={Login}/>
+              <Route path="/basket" component={Basket}/>
+              <PrivateRoute path="/admin" component={JestSimple}/>
+            </Switch>
           </div>
         </Router>
     );

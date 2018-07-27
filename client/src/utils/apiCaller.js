@@ -4,18 +4,23 @@ export const API_URL = 'http://localhost:9001';
 
 export default function callApi(endpoint, method = 'get', body, options = { isJSON: true }) {
 
-  const headers = {};
+  const headers = {
+    // 'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
+    'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+  };
+  
+  // if (options.isJSON) {
+  //   headers['Content-Type'] = 'application/json';
+  // } 
 
-  if (options.isJSON) {
-    headers['content-type'] = 'application/json';
-  } else {
-    headers['content-type'] = 'content-type:text/plain;charset=UTF-8';
-  }  
-console.log('body',body,headers)
+  console.log('body',body,headers)
+  console.log('body',options.isJSON || method !== 'get' ? JSON.stringify(body) : body)
   return fetch(`${API_URL}/${endpoint}`, {
     headers,
     method,
-    body: options.isJSON || method !== 'get' ? JSON.stringify(body) : body,
+    mode: 'cors',  
+    body: `url=${body.url}`,  
+    // body: options.isJSON || method !== 'get' ? JSON.stringify(body) : body,
   })
   .then(response => response.json().then(json => ({ json, response })))
   .then(({ json, response }) => {
