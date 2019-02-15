@@ -14,7 +14,6 @@ import Basket from './../modules/Basket/Basket';
 import Catalog from './../modules/Catalog/Catalog';
 import Orders from './../modules/Orders/Orders';
 import Login from './../modules/Login/Login';
-import JestSimple from './../modules/JestSimple/JestSimple';
 import './App.css';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
@@ -42,7 +41,7 @@ class App extends Component {
               <Route path='/goods' component={Catalog}/>              
               <Route path="/login" component={Login}/>
               <Route path="/basket" component={Basket}/>
-              <PrivateRoute path="/admin" component={JestSimple}/>
+              <PrivateRoute path="/admin" component={()=> <h1>admin page!!!</h1>}/>
             </Switch>
           </div>
         </Router>

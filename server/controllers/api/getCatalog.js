@@ -33,15 +33,8 @@ const getCatalog = (req, res, next) => {
         res.status(200).json(result);
     });   
 };
-// heapers
-const getDataFromUrl = (url) => {       
-    const options = {
-        url,
-        transform: body => cheerio.load(body)
-    };
+// helpers
 
-    return rp(options);            
-};
 
 const isSubCategoriesListPage = $ => $('#content .categories.list.sub').length;
 const isCategoriesGoodsListPage = $ => $('#content .categories.goods.list').length;
