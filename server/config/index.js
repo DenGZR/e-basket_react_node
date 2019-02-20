@@ -7,5 +7,5 @@ module.exports = {
   server: {
     port: 9001
   },
-  baseUrl: 'https://mebel-ikea.com.ua',
+  baseUrl: 'http://lefarma.ru',
 };
