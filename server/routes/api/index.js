@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import catalog from './catalog';
+import product from './product';
 import brands from './brands';
 
 const apiRouter = Router();
-apiRouter.use('/catalog', catalog);
+apiRouter.use('/product', product);
 apiRouter.use('/brands', brands);
 
 export default apiRouter;
