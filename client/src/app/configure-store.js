@@ -1,30 +1,15 @@
-// import { createStore, applyMiddleware } from 'redux';
-// import { composeWithDevTools } from 'redux-devtools-extension';
-// import thunk from 'redux-thunk';
-// import reducers from './root-reducers';
-// import callApi from './../utils/apiCaller';
-
-// const configureStore = () => {
-//   return createStore(
-//     reducers,
-//     composeWithDevTools(applyMiddleware(thunk.withExtraArgument(callApi)))
-//   );
-// };
-
-// export default configureStore;
-
 import { createStore, applyMiddleware, compose } from 'redux'
 import { connectRouter, routerMiddleware } from 'connected-react-router'
 import thunk from 'redux-thunk'
 import createHistory from 'history/createBrowserHistory'
-import rootReducer from './modules'
+import rootReducer from './root-reducers';
 import callApi from './../utils/apiCaller'
 
 export const history = createHistory()
 const initialState = {}
 const enhancers = []
 const middleware = [
-  thunk,
+  thunk.withExtraArgument(callApi),
   routerMiddleware(history)
 ]
 
@@ -41,10 +26,12 @@ const composedEnhancers = compose(
   ...enhancers
 )
 
-const store = createStore(
-  connectRouter(history)(rootReducer),
-  initialState,
-  composedEnhancers
-)
+const configureStore = () => {
+  return createStore(
+    connectRouter(history)(rootReducer),
+    initialState,
+    composedEnhancers
+  )
+};
 
-export default store
+export default configureStore;

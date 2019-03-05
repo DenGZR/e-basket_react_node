@@ -11,7 +11,7 @@ export const getAllBrands = (req, res, next) => {
                 const heading = listItem.querySelector('.manufacturer-heading').innerText;
                 const contents = Array.from(listItem.querySelectorAll('.manufacturer-content li a')).map(item => ({
                     text: item.innerText,
-                    href: (item.href || '').replace("http://lefarma.ru/", "http://localhost:9001/api/brands/")
+                    url: (item.href || '').replace('http://lefarma.ru/', '')
                 }));
 
                 return {
@@ -38,18 +38,20 @@ export const getBrand = (req, res, next) => {
                 const getProductLink = (url = '') => {
                     const urlParamsArr = url.split('/');
 
-                    return `/product/${urlParamsArr[urlParamsArr.length-1]}`;
+                    return `${urlParamsArr[urlParamsArr.length-1]}`;
                 };
-                const img = listItem.querySelector('.image img').src;
-                const description = listItem.querySelector('.product-about .name a').innerText;
+                const removeCurrencySing = price => price.replace(/[^\d]+/g, '');
+
+                const imgSrc = listItem.querySelector('.image img').src;
+                const title = listItem.querySelector('.product-about .name a').innerText;
                 const productLink = getProductLink(listItem.querySelector('.product-about .name a').href);
-                const price = listItem.querySelector('.price').innerText;
+                const price = removeCurrencySing(listItem.querySelector('.price').innerText);
 
                 return {
-                    img,
-                    description,
+                    imgSrc,
+                    title,
                     productLink,
-                    price
+                    price,
                 };
             });
 
@@ -60,3 +62,32 @@ export const getBrand = (req, res, next) => {
 
 };
 
+export const getProduct = (req, res, next) => {
+    const productName = req.params.productName;
+    console.log('getProduct!!!', `${baseUrl}/${productName}`);
+
+    const getDataByHtml = () => 
+        Array.from(document.querySelectorAll('#container #content .product-info'))
+            .map(listItem=> {
+                const removeCurrencySing = price => price.replace(/[^\d]+/g, '');
+                const title = listItem.querySelector('h1').innerText;
+                const productLink = (title || '').toLowerCase().split(' ').join('-');
+                const imgSrc = listItem.querySelector('.image img.img-responsive').src;
+                const description = listItem.querySelector('#tab-description > div').innerText;
+                const price = removeCurrencySing(listItem.querySelector('.price .micro-price').innerText);
+
+                return {
+                    title,
+                    productLink,
+                    imgSrc,
+                    price,
+                    description,
+                };
+            });
+
+    scrape(`${baseUrl}/${productName}`, getDataByHtml).then((data) => {
+        console.log("Data", data.length);
+        res.status(200).json(data);
+    });
+
+};

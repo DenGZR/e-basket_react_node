@@ -1,9 +1,26 @@
 import express from 'express';
+import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import config from './config';
 import routes from './routes';
+
+// database
+mongoose.Promise = global.Promise;
+mongoose.set('debug', config.isProd);
+mongoose.connection
+  .on('error', error => console.log(error))
+  .on('close', () => console.log('Database connection closed.'))
+  .once('open', () => {
+      const info = mongoose.connections[0];
+      console.log(`Connected to ${info.host}:${info.port}/${info.name}`);
+  });
+mongoose
+  .connect(
+    config.isProd ? config.db.prod : config.db.dev,
+    { useMongoClient: true }
+  );
 
 const app = express();
 
@@ -37,6 +54,5 @@ app.use((err, req, res, next) => {
     message: err.message
   });
 });
-
 
 app.listen(config.server.port, () => console.log(`server start on port: ${config.server.port}`));

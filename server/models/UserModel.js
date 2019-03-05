@@ -13,13 +13,17 @@ export const userSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  lastEventData: {
-    type: Date,
-    default: Date.now
+  name: {
+    type: String,
+    default: null
   },
-  lastVisitData: {
-    type: Date,
-    default: Date.now
+  phone: {
+    type: String,
+    default: null
+  },
+  email: {
+    type: String,
+    default: null
   }
 });
 

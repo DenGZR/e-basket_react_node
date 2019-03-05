@@ -1,9 +1,10 @@
 import { Router } from 'express';
-import product from './product';
 import brands from './brands';
+import orders from './orders';
 
 const apiRouter = Router();
-apiRouter.use('/product', product);
+
 apiRouter.use('/brands', brands);
+apiRouter.use('/orders', orders);
 
 export default apiRouter;

@@ -3,6 +3,7 @@ import rp from 'request-promise';
 import cheerio from 'cheerio';
 import puppeteer from 'puppeteer';
 
+
 export const scrape = async (url, callback) => {
     const startDate = new Date().getTime();
     const USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3239.108 Safari/537.36';
@@ -32,3 +33,5 @@ export const getDataFromUrl = url => {
 
     return rp(options);            
 };
+
+export const currencyConvertor = value => value; 

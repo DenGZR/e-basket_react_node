@@ -8,13 +8,15 @@ import {
 import Auth from '../utils/auth';
 
 import Header from './../components/Header/Header';
-import UserBasketLink from './../components/UserBasketLink/UserBasketLink';
-import Basket from './../modules/Basket/Basket';
+// Cart
+import UserCart from './../components/UserCart';
+import CartModal from './../components/CartModal';
+import Cart from './../modules/Cart';
 
-import Catalog from './../modules/Catalog/Catalog';
-import Orders from './../modules/Orders/Orders';
+import Brands from './../modules/Brands';
+import BrandItem from './../modules/BrandItem';
+import Product from './../modules/Product';
 import Login from './../modules/Login/Login';
-import './App.css';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={props => (
@@ -35,12 +37,15 @@ class App extends Component {
         <Router>
           <div className="App">
             <Header />
-            <UserBasketLink />
+            <UserCart />
+            <CartModal />
             <Switch>
-              <Route exact path='/' component={Catalog}/>
-              <Route path='/goods' component={Catalog}/>              
+              <Route exact path='/' component={Brands}/>
+              <Route exact path='/brands' component={Brands}/>
+              <Route exact path='/brands/:brandName' component={BrandItem}/>   
+              <Route exact path='/brands/:brandName/:productName' component={Product}/> 
+              <Route path="/checkout" component={Cart}/>
               <Route path="/login" component={Login}/>
-              <Route path="/basket" component={Basket}/>
               <PrivateRoute path="/admin" component={()=> <h1>admin page!!!</h1>}/>
             </Switch>
           </div>
