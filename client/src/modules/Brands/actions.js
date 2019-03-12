@@ -18,7 +18,7 @@ const getCatalogFail = (response) => ({
 
 export const fetchData = url => (dispatch, state, api) => {
   dispatch(getCatalogStart());
-  return api(`api/${url}`, 'get')
+  return api(`api${url}`, 'get')
     .then(response => {
       console.log(response);
       dispatch(getCatalogSuccess(response.data))

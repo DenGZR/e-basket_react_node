@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Row, Col } from 'reactstrap';
 import OrderList from './components/OrderList';
-import { fetchOrders } from './actions';
+import { loadOrders } from './actions';
 import { addOrderToBasket } from '../Basket/actions';
 
 class Orders extends Component {

@@ -2,8 +2,9 @@ import * as ordersAction from './actions';
 
 const initialState = {
     isLoading: false,
-    data: [],
-    selectedId: []
+    data: null,
+    details: null,
+    selectedId: null,
 };
 
 const OrdersReducer = (state = initialState, action) => {
@@ -19,7 +20,7 @@ const OrdersReducer = (state = initialState, action) => {
       return {
           ...state,
           isLoading: false,
-          data: action.response.data
+          data: action.response
       }
     }
 
@@ -29,6 +30,28 @@ const OrdersReducer = (state = initialState, action) => {
           isLoading: false,
       }
     }
+
+    case ordersAction.GET_ORDERS_DETAILS_START: {
+      return {
+          ...state,
+          isLoading: true,
+      }
+    }
+
+  case ordersAction.GET_ORDERS_DETAILS_SUCCESS: {
+    return {
+        ...state,
+        isLoading: false,
+        details: action.response
+    }
+  }
+
+  case ordersAction.GET_ORDERS_DETAILS_FAIL: {
+    return {
+        ...state,
+        isLoading: false,
+    }
+  }
           
     case ordersAction.ADD_ORDER_TO_BASKET: {
       return {

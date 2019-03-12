@@ -1,10 +1,13 @@
 import { sumBy, chain } from 'lodash';
 
 // selectors
-export const getOrdersCount = state => sumBy(state.cart.orders, 'quantity');
-export const getOrdersTotal = state => chain(state.cart.orders)
+export const getOrdersCount = orders => sumBy(orders, 'quantity');
+export const getOrdersTotal = orders => chain(orders)
     .reduce((sum, order) => {
         const { quantity, price } = order;
-        return sum + quantity*price;
+        if (quantity*price) {
+            return sum + quantity*price;
+        }
+        return sum;
     }, 0)
     .value();

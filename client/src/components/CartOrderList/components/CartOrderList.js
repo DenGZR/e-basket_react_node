@@ -4,12 +4,12 @@ import CartOrderItem from './CartOrderItem';
 class CartOrderList extends Component {
 
   render() {
-    const { orders, removeItem } = this.props;
+    const { items, removeItem } = this.props;
     return (
         <div className="cart-modal-order-list">
             {
-                orders.map((order,index) => (
-                <CartOrderItem key={index} removeItem={removeItem} order={order} />
+                items.map((item,index) => (
+                    <CartOrderItem key={index} removeItem={removeItem} item={item} />
                 ))  
             }
         </div>  

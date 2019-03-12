@@ -1,56 +1,34 @@
 import React, { Component } from 'react';
+import  { Link } from 'react-router-dom';
+import moment from 'moment';
 
-class BasketOrderItem extends Component {
-    state = {
-        quantity: 1,
-    }
-
-    onDecrease = () => {
-        const { quantity } = this.state;
-        this.setState({
-            quantity: quantity - 1 < 0 ? 0 : quantity - 1
-        });
-    }
-
-    onIncrease = () => {
-        const { quantity } = this.state;
-        this.setState({
-            quantity: quantity + 1
-        })
-    }
-
-    setQuantity = () => (ev) => {
-        const quantity = ev.target.value;
-        this.setState({
-            quantity: quantity
-        })
-    }
-
-    addItemToBasket = () => {
-        const { item, addToBasket } = this.props;
-        const { quantity } = this.state;
-        addToBasket(item.id, quantity);
-    }
-
+class OrderItem extends Component {
     render() {
         const { item } = this.props;
-        const { title, imgSrc, description } = item;
-        const { quantity } = this.state;
-
+        const { createdData, createdBy, id } = item;
+        console.log('OrderItem',item);
         return (
             <div className="list-item" >
-                <h2>{title}</h2>
-                <img src={imgSrc} alt="foto"/>
-                <p>{description}</p>
-                <button onClick={this.onDecrease}>-</button>
-                <input type="text" value={quantity} onChange={this.setQuantity()} />
-                <button onClick={this.onIncrease}>+</button>
-                <button onClick={this.addItemToBasket}>Добавить в корзину</button>
+                <span>{id}</span>
+                {' '}
+                <span>{moment(createdData).format('DD/MM/YYYY HH:MM')}</span>
+                {' '}
+                {
+                    createdBy && (
+                        <span> 
+                            <span>{createdBy.name}</span>
+                            {' '}
+                            <span>{createdBy.phone}</span>
+                            {' '}
+                        </span>
+                    )
+                }
+                <Link to={`/orders/${id}`}>
+                    Посмотреть детали
+                </Link>
             </div>
         )
     }
-
-
 }
 
-export default BasketOrderItem;
+export default OrderItem;

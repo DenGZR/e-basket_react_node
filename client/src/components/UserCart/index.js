@@ -21,8 +21,8 @@ const userBasketLink = props => {
 };
 
 const mapStateToProps = (state) => ({
-    ordersCount: getOrdersCount(state),
-    ordersTotal: getOrdersTotal(state),
+    ordersCount: getOrdersCount(state.cart.orders),
+    ordersTotal: getOrdersTotal(state.cart.orders),
 });
 
 const mapDispatchToProps = {

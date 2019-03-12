@@ -27,7 +27,7 @@ class CartModal extends Component {
         <Modal isOpen={isShow} toggle={this.toggle} className="cart-modal">
             <ModalHeader toggle={this.toggle}>Ваш заказ</ModalHeader>
             <ModalBody>
-                <CartOrderList removeItem={this.removeOrderItem} orders={orders}/>
+                <CartOrderList removeItem={this.removeOrderItem} items={orders}/>
                 <p>{`Товар(ов): ${ordersCount}`}</p>
                 <p>{`Итого: ${ordersTotal}`}</p>
             </ModalBody>
@@ -43,8 +43,8 @@ class CartModal extends Component {
 const mapStateToProps = (state) => ({
     isShow: state.cart.isShowModal,
     orders: state.cart.orders,
-    ordersCount: getOrdersCount(state),
-    ordersTotal: getOrdersTotal(state),
+    ordersCount: getOrdersCount(state.cart.orders),
+    ordersTotal: getOrdersTotal(state.cart.orders),
 });
 
 const mapDispatchToProps = {

@@ -16,6 +16,7 @@
     "http-proxy": "^1.16.2",
     "jsonwebtoken": "^7.3.0",
     "lodash": "^4.17.11",
+    "moment": "^2.24.0",
     "mongoose": "^4.8.2",
     "puppeteer": "^1.12.2",
     "superagent": "^3.5.2",

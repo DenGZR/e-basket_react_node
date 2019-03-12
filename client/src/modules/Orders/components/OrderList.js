@@ -1,17 +1,17 @@
 import React from 'react';
 import OrderItem from './OrderItem';
 
-const olderList = ({ items, onItemClick }) => {
+const OrderList = ({ orders, onItemClick }) => {
     
-    if(!items.length) return null;
+    if(!orders.length) return null;
     
     return (
         <div className="order-list">
             {
-                items.map(item => <OrderItem item={item} addToBasket={onItemClick} key={item.id} />)
+                orders.map(order => <OrderItem item={order} addToBasket={onItemClick} key={order.id} />)
             }
         </div>
     )
 };
 
-export default olderList;
+export default OrderList;

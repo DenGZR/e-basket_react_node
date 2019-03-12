@@ -33,18 +33,18 @@ class CartOrderItem extends Component {
     // }
 
     onRemoveItem = () => {
-        const { order, removeItem } = this.props;
-        removeItem(order);
+        const { item, removeItem } = this.props;
+        removeItem(item);
     }
 
     render() {
-        const { order } = this.props;
+        const { item } = this.props;
 
         return (
             <div className="cart-order-item" >
-                <img className="item-image" src={order.imgSrc} alt="foto"/>
-                <p className="item-title">{order.title}</p>
-                <p className="item-quantity">{`x${order.quantity}`}</p>
+                <img className="item-image" src={item.imgSrc} alt="foto"/>
+                <p className="item-title">{item.title}</p>
+                <p className="item-quantity">{`x${item.quantity}`}</p>
                 <button className="item-remove-btn" onClick={this.onRemoveItem}>&times;</button> 
                 {/* <button onClick={this.onDecrease}>-</button>
                 <input type="text" value={quantity} onChange={this.setQuantity()} />

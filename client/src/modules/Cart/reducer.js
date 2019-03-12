@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import * as actionTypes from './actions';
+import * as actionTypesOrders from '../Orders/actions';
 
 const initialState = {
     orders: [],
@@ -31,14 +32,14 @@ const removeOrder = (state, action ) => {
 
 const CartReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.POST_CART_ORDERS_START: {
+    case actionTypesOrders.POST_ORDERS_START: {
         return {
             ...state,
             isLoading: true,
         }
       }
 
-    case actionTypes.POST_CART_ORDERS_SUCCESS: {
+    case actionTypesOrders.POST_ORDERS_SUCCESS: {
       return {
           ...state,
           isLoading: false,
@@ -46,7 +47,7 @@ const CartReducer = (state = initialState, action) => {
       }
     }
 
-    case actionTypes.POST_CART_ORDERS_FAIL: {
+    case actionTypesOrders.POST_ORDERS_FAIL: {
       return {
           ...state,
           isLoading: false,

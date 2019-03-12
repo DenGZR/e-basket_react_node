@@ -13,6 +13,9 @@ import UserCart from './../components/UserCart';
 import CartModal from './../components/CartModal';
 import Cart from './../modules/Cart';
 
+import Orders from './../modules/Orders';
+import OrderDetails from './../modules/Orders/components/OrderDetails';
+
 import Brands from './../modules/Brands';
 import BrandItem from './../modules/BrandItem';
 import Product from './../modules/Product';
@@ -44,6 +47,8 @@ class App extends Component {
               <Route exact path='/brands' component={Brands}/>
               <Route exact path='/brands/:brandName' component={BrandItem}/>   
               <Route exact path='/brands/:brandName/:productName' component={Product}/> 
+              <Route exact path='/orders' component={Orders}/>
+              <Route exact path='/orders/:orderId' component={OrderDetails}/>
               <Route path="/checkout" component={Cart}/>
               <Route path="/login" component={Login}/>
               <PrivateRoute path="/admin" component={()=> <h1>admin page!!!</h1>}/>

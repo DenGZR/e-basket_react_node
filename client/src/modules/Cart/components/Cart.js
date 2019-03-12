@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { Row, Col } from 'reactstrap';
 import CheckoutForm from '../../../components/CheckoutForm';
 import CartOrderList from '../../../components/CartOrderList';
-import { removeOrderFromCart, fetchToCreateOrders } from '../actions';
+import { removeOrderFromCart } from '../actions';
+import { postOrders } from '../../Orders/actions';
 
 
 class Cart extends Component {
@@ -39,7 +40,7 @@ class Cart extends Component {
                     {
                         orders.length ? (
                             <div>
-                                <CartOrderList removeItem={this.removeOrderItem} orders={orders}/>
+                                <CartOrderList removeItem={this.removeOrderItem} items={orders}/>
                                 <CheckoutForm onSubmit={this.onSubmitCheckoutForm}/> 
                             </div>
                         ) : (
@@ -60,7 +61,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     removeOrderFromCart: order => removeOrderFromCart(order),
-    fetchToCreateOrders: data => fetchToCreateOrders(data),
+    fetchToCreateOrders: data => postOrders(data),
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);
