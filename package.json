@@ -22,7 +22,8 @@
     "superagent": "^3.5.2",
     "validator": "^7.0.0",
     "winston": "^2.3.1",
-    "xlsx": "^0.11.11"
+    "xlsx": "^0.11.11",
+    "snyk": "^1.230.5"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -53,7 +54,9 @@
     "client": "cd client && npm run start",
     "babel-node": "babel-node --presets=latest",
     "start": "concurrently \"npm run serv\" \"npm run client\"",
-    "reinstall": "rm -rf node_modules && npm cache clean && npm install"
+    "reinstall": "rm -rf node_modules && npm cache clean && npm install",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -65,5 +68,6 @@
     ]
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "snyk": true
 }
