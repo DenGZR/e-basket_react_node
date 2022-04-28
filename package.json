@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "async": "^2.1.4",
+    "async": "^2.6.4",
     "body-parser": "^1.16.1",
     "co": "^4.6.0",
     "co-express": "^1.2.2",
