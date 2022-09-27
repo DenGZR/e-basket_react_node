@@ -4,25 +4,26 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "async": "^2.1.4",
+    "async": "^2.6.4",
     "body-parser": "^1.16.1",
     "co": "^4.6.0",
     "co-express": "^1.2.2",
-    "connect-mongo": "^1.3.2",
+    "connect-mongo": "^3.0.0",
     "cookie-parser": "^1.4.3",
     "cross-env": "^5.0.1",
     "es6-promise": "^4.1.0",
     "express": "^4.14.1",
-    "http-proxy": "^1.16.2",
-    "jsonwebtoken": "^7.3.0",
-    "lodash": "^4.17.11",
-    "moment": "^2.24.0",
-    "mongoose": "^4.8.2",
-    "puppeteer": "^1.12.2",
+    "http-proxy": "^1.18.1",
+    "jsonwebtoken": "^8.0.0",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4",
+    "mongoose": "^5.13.15",
+    "puppeteer": "^1.13.0",
     "superagent": "^3.5.2",
-    "validator": "^7.0.0",
+    "validator": "^13.7.0",
     "winston": "^2.3.1",
-    "xlsx": "^0.11.11"
+    "xlsx": "^0.17.0",
+    "@snyk/protect": "latest"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -53,7 +54,9 @@
     "client": "cd client && npm run start",
     "babel-node": "babel-node --presets=latest",
     "start": "concurrently \"npm run serv\" \"npm run client\"",
-    "reinstall": "rm -rf node_modules && npm cache clean && npm install"
+    "reinstall": "rm -rf node_modules && npm cache clean && npm install",
+    "prepare": "yarn run snyk-protect",
+    "snyk-protect": "snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -65,5 +68,6 @@
     ]
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "snyk": true
 }
